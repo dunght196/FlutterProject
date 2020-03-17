@@ -227,6 +227,7 @@ class BarChartStackedState extends BarActionState<BarChartStacked>
             ..xEntrySpace = (6);
         },
         xAxisSettingFunction: (xAxis, controller) {
+          xAxis.
           xAxis.drawAxisLine = true;
           xAxis.position = (XAxisPosition.TOP);
         },

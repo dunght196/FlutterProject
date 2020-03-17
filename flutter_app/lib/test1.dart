@@ -39,8 +39,10 @@ class ChartCombinedState extends State<ChartCombined> {
   void _initController() {
     var desc = Description()..enabled = false;
     controller = HorizontalBarChartController(
+
         axisLeftSettingFunction: (axisLeft, controller) {
           axisLeft
+            ..inverted = (true)
             ..drawGridLines = (false)
             ..setAxisMinimum(0)
             ..typeface = Util.LIGHT;
@@ -55,16 +57,11 @@ class ChartCombinedState extends State<ChartCombined> {
         xAxisSettingFunction: (xAxis, controller) {
           xAxis
             ..drawGridLines = (false)
+            ..setAxisMaximum(12)
+            ..setAxisMinimum(0)
             ..typeface = Util.LIGHT;
         },
         drawGridBackground: false,
-        dragXEnabled: true,
-        dragYEnabled: true,
-        scaleXEnabled: true,
-        scaleYEnabled: true,
-        pinchZoomEnabled: true,
-        maxVisibleCount: 200,
-        maxHighlightDistance: 50,
         description: desc);
   }
 
@@ -95,12 +92,12 @@ class ChartCombinedState extends State<ChartCombined> {
 
     set1 = BarDataSet(values, "Statistics Vienna 2014");
     set1.setDrawIcons(false);
-//    set1.setColors1(_getColors());
+    set1.setColors1(_getColors());
     set1.setDrawValues(false);
 
     set2 = BarDataSet(values1, "Statistics Vienna 2014");
     set2.setDrawIcons(false);
-//    set2.setColors1(_getColors1());
+    set2.setColors1(_getColors1());
     set2.setDrawValues(false);
 
     List<IBarDataSet> dataSets = List();
@@ -114,5 +111,20 @@ class ChartCombinedState extends State<ChartCombined> {
     setState(() {}
     );
   }
+
+  List<Color> _getColors() {
+    return List()
+      ..add(ColorUtils.MATERIAL_COLORS[0])
+      ..add(ColorUtils.MATERIAL_COLORS[1])
+      ..add(ColorUtils.MATERIAL_COLORS[2]);
+  }
+
+  List<Color> _getColors1() {
+    return List()
+      ..add(Colors.green)
+      ..add(Colors.amber)
+      ..add(Colors.black87);
+  }
+
 
 }

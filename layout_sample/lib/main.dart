@@ -7,7 +7,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Color color = Theme.of(context).primaryColor;
 
-     buttonSelection() {
+    buttonSelection() {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -18,18 +18,17 @@ class MyApp extends StatelessWidget {
       );
     }
 
-
-  Widget textSection = Container(
-    padding: EdgeInsets.all(32),
-    child: Text(
-      'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
-          'Alps. Situated 1,578 meters above sea level, it is one of the '
-          'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a '
-          'half-hour walk through pastures and pine forest, leads you to the '
-          'lake, which warms to 20 degrees Celsius in the summer. Activities '
-          'enjoyed here include rowing, and riding the summer toboggan run.',
-    ),
-  );
+    Widget textSection = Container(
+      padding: EdgeInsets.all(32),
+      child: Text(
+        'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
+        'Alps. Situated 1,578 meters above sea level, it is one of the '
+        'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a '
+        'half-hour walk through pastures and pine forest, leads you to the '
+        'lake, which warms to 20 degrees Celsius in the summer. Activities '
+        'enjoyed here include rowing, and riding the summer toboggan run.',
+      ),
+    );
 
     return MaterialApp(
       title: 'Flutter Demo',
@@ -48,7 +47,8 @@ class MyApp extends StatelessWidget {
               ),
               titleSection(),
               buttonSelection(),
-              textSection],
+              textSection
+            ],
           ),
         ),
       ),
@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
           Expanded(
             child: Container(
               child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     padding: const EdgeInsets.only(bottom: 8),
@@ -82,11 +82,12 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ),
-          Icon(
-            Icons.star,
-            color: Colors.red[500],
-          ),
-          Text('41'),
+          FavoriteWidget(),
+//          Icon(
+//            Icons.star,
+//            color: Colors.red[500],
+//          ),
+//          Text('41'),
         ],
       ),
     );
@@ -111,9 +112,43 @@ class MyApp extends StatelessWidget {
 
 class FavoriteWidget extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return null;
+  _FavoriteWidgetState createState() => _FavoriteWidgetState();
+}
+
+class _FavoriteWidgetState extends State<FavoriteWidget> {
+  bool _isFavorite = true;
+  int _favoriteCount = 41;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: EdgeInsets.all(0),
+          child: IconButton(
+              icon: (_isFavorite ? Icon(Icons.star) : Icon(Icons.star_border)),
+              color: Colors.red[500],
+              onPressed: _toggleFavorite),
+        ),
+        SizedBox(
+          width: 18,
+          child: Container(
+            child: Text('$_favoriteCount'),
+          ),
+        ),
+      ],
+    );
   }
 
+  void _toggleFavorite() {
+    setState(() {
+      if (_isFavorite) {
+        _favoriteCount -= 1;
+        _isFavorite = false;
+      } else {
+        _favoriteCount += 1;
+        _isFavorite = true;
+      }
+    });
+  }
 }

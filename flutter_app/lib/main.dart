@@ -6,6 +6,7 @@ import 'mpchart/bar_chart/stacked.dart';
 import 'mpchart/line_chart/basic.dart';
 import 'mpchart/other_chart/combined.dart';
 import 'mpchart/other_chart/scatter_plot.dart';
+import 'test1.dart';
 
 void main() => runApp(MyApp());
 
