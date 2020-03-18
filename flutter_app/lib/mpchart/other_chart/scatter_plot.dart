@@ -142,7 +142,8 @@ class OtherChartScatterPlotState
         axisLeftSettingFunction: (axisLeft, controller) {
           axisLeft
             ..drawGridLines = (false)
-            ..setAxisMinimum(0)
+            ..setAxisMinimum(-0.4)
+            ..setAxisMaximum(12.4)
             ..typeface = Util.LIGHT;
         },
         axisRightSettingFunction: (axisRight, controller) {
@@ -155,6 +156,8 @@ class OtherChartScatterPlotState
         xAxisSettingFunction: (xAxis, controller) {
           xAxis
             ..drawGridLines = (false)
+            ..setAxisMinimum(0)
+            ..setAxisMaximum(7)
             ..typeface = Util.LIGHT;
         },
         drawGridBackground: false,
@@ -184,8 +187,8 @@ class OtherChartScatterPlotState
 //      values1.add(Entry(x: i.toDouble(), y: val, icon: imgs[0]));
 //    }
 
-    values1.add(Entry(x: 10, y: 60, icon: imgs[0], data: '1'));
-    values1.add(Entry(x: 30, y: 40, icon: imgs[0], data: '2'));
+    values1.add(Entry(x: 1, y: 12, icon: imgs[0], data: '1'));
+    values1.add(Entry(x: 2, y: 12, icon: imgs[0], data: '2'));
 
     for (int i = 0; i < count; i++) {
       double val = (random.nextDouble() * range) + 3;
@@ -253,7 +256,6 @@ class OtherChartScatterPlotState
 //}
 
 class CustomScatterShapeRenderer extends ValueFormatter {
-
   @override
   String getPointLabel(Entry entry) {
     return entry.mData;

@@ -153,12 +153,12 @@ class BarChartStackedState extends BarActionState<BarChartStacked>
 
     values.add(BarEntry.fromListYVals(
       x: 1,
-      vals: List()..add(10)..add(20)..add(30),
+      vals: List()..add(1)..add(1)..add(1)..add(1),
     ));
 
     values1.add(BarEntry.fromListYVals(
       x: 2,
-      vals: List()..add(10)..add(20)..add(30),
+      vals: List()..add(1)..add(1)..add(1),
     ));
 
 //    values.add(val1);
@@ -193,7 +193,8 @@ class BarChartStackedState extends BarActionState<BarChartStacked>
     return List()
       ..add(ColorUtils.MATERIAL_COLORS[0])
       ..add(ColorUtils.MATERIAL_COLORS[1])
-      ..add(ColorUtils.MATERIAL_COLORS[2]);
+      ..add(ColorUtils.MATERIAL_COLORS[2])
+      ..add(ColorUtils.MATERIAL_COLORS[3]);
   }
 
   List<Color> _getColors1() {
@@ -208,8 +209,10 @@ class BarChartStackedState extends BarActionState<BarChartStacked>
     controller = HorizontalBarChartController(
         axisLeftSettingFunction: (axisLeft, controller) {
           axisLeft
-            ..setValueFormatter(MyValueFormatter("K"))
-            ..setAxisMinimum(0);
+//            ..setValueFormatter(MyValueFormatter("K"))
+            ..drawGridLines = false
+            ..setAxisMinimum(0)
+            ..setAxisMaximum(7);
         },
         axisRightSettingFunction: (axisRight, controller) {
           axisRight.enabled = (false);
@@ -227,22 +230,23 @@ class BarChartStackedState extends BarActionState<BarChartStacked>
             ..xEntrySpace = (6);
         },
         xAxisSettingFunction: (xAxis, controller) {
-          xAxis.
-          xAxis.drawAxisLine = true;
+          xAxis.drawGridLines = false;
           xAxis.position = (XAxisPosition.TOP);
+          xAxis.setAxisMaximum(12);
+          xAxis.setAxisMinimum(0);
         },
-        drawGridBackground: false,
-        dragXEnabled: true,
-        dragYEnabled: true,
-        scaleXEnabled: true,
-        scaleYEnabled: true,
-        pinchZoomEnabled: false,
-        maxVisibleCount: 60,
-        fitBars: true,
-        selectionListener: this,
-        drawBarShadow: false,
-        highlightFullBarEnabled: false,
-        drawValueAboveBar: false,
+//        drawGridBackground: false,
+//        dragXEnabled: true,
+//        dragYEnabled: true,
+//        scaleXEnabled: true,
+//        scaleYEnabled: true,
+//        pinchZoomEnabled: false,
+//        maxVisibleCount: 60,
+//        fitBars: true,
+//        selectionListener: this,
+//        drawBarShadow: false,
+//        highlightFullBarEnabled: false,
+//        drawValueAboveBar: false,
         description: desc);
   }
 

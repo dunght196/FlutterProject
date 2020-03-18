@@ -120,6 +120,7 @@ class OtherChartCombinedState extends CombinedActionState<OtherChartCombined> {
   void _initCombinedData() {
     controller.data = CombinedData();
     controller.data
+
       ..setData1(generateLineData())
       ..setData2(generateBarData())
       ..setData5(generateBubbleData())

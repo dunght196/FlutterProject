@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/test1.dart';
+import 'package:flutterapp/test2.dart';
+
+import 'package:mp_chart/mp/chart/scatter_chart.dart';
 import 'package:mp_chart/mp/core/data_set/scatter_data_set.dart';
 
 import 'mpchart/bar_chart/stacked.dart';
 import 'mpchart/line_chart/basic.dart';
 import 'mpchart/other_chart/combined.dart';
 import 'mpchart/other_chart/scatter_plot.dart';
-import 'test1.dart';
 
 void main() => runApp(MyApp());
 
@@ -61,8 +62,29 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+        appBar:  AppBar(
+          title: Text('Hello'),
+        ),
 //      body: ShapesScatterPlotChart.withSampleData(),
-      body: ChartCombined(),
+      body: Stack(
+        children: <Widget>[
+          Container(height:400 ,child: ChartCombined()),
+//          Container(height:300 ,child: ChartCombined1()),
+        ],
+      )
+//        body: ListView(
+//          children: <Widget>[
+//            Container(
+//                child: Stack(
+//                  children: <Widget>[
+//                      ChartCombined()
+////                    Positioned(child: ChartCombined1()),
+////                    Positioned(top: 10.0, child: ChartCombined()),
+//                  ],
+//                )
+//            )
+//          ],
+//        ),
     );
   }
 }

@@ -41,37 +41,23 @@ class ChartCombined extends StatefulWidget {
 
 class ChartCombinedState extends State<ChartCombined> {
   BarChartController controllerBarChart;
-  ScatterChartController controllerScatterChart;
 
   @override
   void initState() {
     super.initState();
     _initControllerBarChart();
-    _initControllerScatterChart();
     _initBarData();
-    _initScatterData();
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Container(
-          height: 1100,
-          margin: const EdgeInsets.only(top: 10),
-          child: Stack(children: [
-            BarChart(controllerBarChart),
-            ScatterChart(controllerScatterChart)
-          ]),
-        )
-      ],
-    );
+    return BarChart(controllerBarChart);
   }
 
   void _initControllerBarChart() {
     var desc = Description()..enabled = false;
-    controllerBarChart = HorizontalBarChartController(
-        backgroundColor: Colors.transparent,
+    controllerBarChart = BarChartController(
+        backgroundColor: Color.fromRGBO(0, 0, 0, 0),
         axisLeftSettingFunction: (axisLeft, controller) {
           axisLeft
             ..drawGridLines = false
@@ -86,8 +72,8 @@ class ChartCombinedState extends State<ChartCombined> {
         },
         xAxisSettingFunction: (xAxis, controller) {
           xAxis.drawGridLines = false;
-          xAxis.setAxisMaximum(12.4);
-          xAxis.setAxisMinimum(-0.4);
+          xAxis.setAxisMaximum(5);
+          xAxis.setAxisMinimum(0);
         },
         drawGridBackground: false,
 //        dragXEnabled: false,
@@ -97,17 +83,107 @@ class ChartCombinedState extends State<ChartCombined> {
 //        pinchZoomEnabled: false,
 //        maxVisibleCount: 60,
 //        fitBars: false,
-//        drawBarShadow: false,
 //        highlightFullBarEnabled: false,
 //        drawValueAboveBar: false,
 //        doubleTapToZoomEnabled: false,
         description: desc);
   }
 
+  void _initBarData() {
+    List<BarEntry> values = List();
+    List<BarEntry> values1 = List();
+
+    values.add(BarEntry.fromListYVals(
+      x: 2,
+      vals: List()..add(1)..add(1)..add(1),
+    ));
+
+    values.add(BarEntry.fromListXVals(
+      vals: List()..add(1)..add(1)..add(1),
+      y: 2
+    ));
+
+    values1.add(BarEntry.fromListYVals(
+      x: 3,
+      vals: List()..add(1)..add(1)..add(1),
+    ));
+
+    BarDataSet set1;
+    BarDataSet set2;
+
+    set1 = BarDataSet(values, "Statistics Vienna 2014");
+    set1.setDrawIcons(false);
+    set1.setBarBorderColor(colorBorder);
+    set1.setBarBorderWidth(widthBorderChart);
+    set1.setColors1(_getColors());
+    set1.setDrawValues(false);
+
+    set2 = BarDataSet(values1, "Statistics Vienna 2014");
+    set2.setDrawIcons(false);
+    set2.setColors1(_getColors1());
+    set2.setDrawValues(false);
+
+    List<IBarDataSet> dataSets = List();
+    dataSets.add(set1);
+//    dataSets.add(set2);
+
+    BarData d = BarData(dataSets);
+    d.barWidth = 0.26;
+
+    controllerBarChart.data = d;
+    controllerBarChart.drawGridBackground = false;
+//    controller.data
+//      ..setValueFormatter(StackedValueFormatter(false, "", 1));
+//      ..setValueTextColor(ColorUtils.WHITE);
+
+    setState(() {});
+  }
+
+
+  List<Color> _getColors() {
+    return List()
+      ..add(Colors.transparent)
+      ..add(Colors.transparent)
+      ..add(Colors.transparent);
+  }
+
+  List<Color> _getColors1() {
+    return List()..add(Colors.green)..add(Colors.amber)..add(Colors.black87);
+  }
+}
+
+class CustomScatterShapeRenderer extends ValueFormatter {
+  @override
+  String getPointLabel(Entry entry) {
+    return entry.mData;
+  }
+}
+
+class ChartCombined1 extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return ChartCombinedState1();
+  }
+}
+
+class ChartCombinedState1 extends State<ChartCombined1> {
+  ScatterChartController controllerScatterChart;
+
+  @override
+  void initState() {
+    super.initState();
+    _initControllerScatterChart();
+    _initScatterData();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ScatterChart(controllerScatterChart);
+  }
+
   void _initControllerScatterChart() {
     var desc = Description()..enabled = false;
     controllerScatterChart = ScatterChartController(
-        backgroundColor: Colors.transparent,
         axisLeftSettingFunction: (axisLeft, controller) {
           axisLeft
             ..drawGridLines = (false)
@@ -140,56 +216,10 @@ class ChartCombinedState extends State<ChartCombined> {
 //        scaleYEnabled: false,
 //        pinchZoomEnabled: false,
 //        maxVisibleCount: 60,
-//        fitBars: false,
-//        drawBarShadow: false,
 //        highlightFullBarEnabled: false,
 //        drawValueAboveBar: false,
 //        doubleTapToZoomEnabled: false,
         description: desc);
-  }
-
-  void _initBarData() {
-    List<BarEntry> values = List();
-    List<BarEntry> values1 = List();
-
-    values.add(BarEntry.fromListYVals(
-      x: 12,
-      vals: List()..add(1)..add(1)..add(1),
-    ));
-
-    values1.add(BarEntry.fromListYVals(
-      x: 11,
-      vals: List()..add(1)..add(1)..add(1),
-    ));
-
-    BarDataSet set1;
-    BarDataSet set2;
-
-    set1 = BarDataSet(values, "Statistics Vienna 2014");
-    set1.setDrawIcons(false);
-    set1.setBarBorderColor(colorBorder);
-    set1.setBarBorderWidth(widthBorderChart);
-    set1.setColors1(_getColors());
-    set1.setDrawValues(false);
-
-    set2 = BarDataSet(values1, "Statistics Vienna 2014");
-    set2.setDrawIcons(false);
-    set2.setColors1(_getColors1());
-    set2.setDrawValues(false);
-
-    List<IBarDataSet> dataSets = List();
-    dataSets.add(set1);
-    dataSets.add(set2);
-
-    BarData d = BarData(dataSets);
-    d.barWidth = 0.26;
-
-    controllerBarChart.data = d;
-//    controller.data
-//      ..setValueFormatter(StackedValueFormatter(false, "", 1));
-//      ..setValueTextColor(ColorUtils.WHITE);
-
-//    setState(() {});
   }
 
   void _initScatterData() async {
@@ -213,15 +243,7 @@ class ChartCombinedState extends State<ChartCombined> {
 //    set1.setScatterShape(ScatterShape.SQUARE);
     set1.setColor1(ColorUtils.COLORFUL_COLORS[0]);
     set1.setValueFormatter(CustomScatterShapeRenderer());
-    set1.setDrawIcons(false);
-//    ScatterDataSet set2 = ScatterDataSet(values2, "DS 2");
-//    set2.setScatterShape(ScatterShape.CIRCLE);
-//    set2.setScatterShapeHoleColor(ColorUtils.COLORFUL_COLORS[3]);
-//    set2.setScatterShapeHoleRadius(3);
-//    set2.setColor1(ColorUtils.COLORFUL_COLORS[1]);
-//    ScatterDataSet set3 = ScatterDataSet(values3, "DS 3");
-//    set3.setShapeRenderer(CustomScatterShapeRenderer());
-//    set3.setColor1(ColorUtils.COLORFUL_COLORS[2]);
+    set1.setDrawIcons(true);
 
     set1.setScatterShapeSize(0);
 //    set2.setScatterShapeSize(8);
@@ -235,28 +257,9 @@ class ChartCombinedState extends State<ChartCombined> {
     // create a data object with the data sets
     controllerScatterChart.data = ScatterData.fromList(dataSets);
     controllerScatterChart.data.setValueTypeface(Util.LIGHT);
+    controllerScatterChart.drawGridBackground = false;
 
-//    setState(() {});
+    setState(() {});
   }
 
-
-  List<Color> _getColors() {
-    return List()
-      ..add(Colors.transparent)
-      ..add(Colors.transparent)
-      ..add(Colors.transparent);
-  }
-
-  List<Color> _getColors1() {
-    return List()..add(Colors.green)..add(Colors.amber)..add(Colors.black87);
-  }
 }
-
-class CustomScatterShapeRenderer extends ValueFormatter {
-  @override
-  String getPointLabel(Entry entry) {
-    return entry.mData;
-  }
-}
-
-
