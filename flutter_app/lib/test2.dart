@@ -57,7 +57,7 @@ class ChartCombinedState extends State<ChartCombined> {
   void _initControllerBarChart() {
     var desc = Description()..enabled = false;
     controllerBarChart = BarChartController(
-        backgroundColor: Color.fromRGBO(0, 0, 0, 0),
+        backgroundColor: Colors.transparent,
         axisLeftSettingFunction: (axisLeft, controller) {
           axisLeft
             ..drawGridLines = false
@@ -72,8 +72,8 @@ class ChartCombinedState extends State<ChartCombined> {
         },
         xAxisSettingFunction: (xAxis, controller) {
           xAxis.drawGridLines = false;
-          xAxis.setAxisMaximum(5);
-          xAxis.setAxisMinimum(0);
+          xAxis.setAxisMaximum(12.4);
+          xAxis.setAxisMinimum(-0.4);
         },
         drawGridBackground: false,
 //        dragXEnabled: false,
@@ -98,11 +98,6 @@ class ChartCombinedState extends State<ChartCombined> {
       vals: List()..add(1)..add(1)..add(1),
     ));
 
-    values.add(BarEntry.fromListXVals(
-      vals: List()..add(1)..add(1)..add(1),
-      y: 2
-    ));
-
     values1.add(BarEntry.fromListYVals(
       x: 3,
       vals: List()..add(1)..add(1)..add(1),
@@ -125,7 +120,7 @@ class ChartCombinedState extends State<ChartCombined> {
 
     List<IBarDataSet> dataSets = List();
     dataSets.add(set1);
-//    dataSets.add(set2);
+    dataSets.add(set2);
 
     BarData d = BarData(dataSets);
     d.barWidth = 0.26;

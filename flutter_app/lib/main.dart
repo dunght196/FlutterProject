@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/test2.dart';
+import 'package:flutterapp/wonder_week.dart';
 
 import 'package:mp_chart/mp/chart/scatter_chart.dart';
 import 'package:mp_chart/mp/core/data_set/scatter_data_set.dart';
@@ -65,26 +66,11 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar:  AppBar(
           title: Text('Hello'),
         ),
-//      body: ShapesScatterPlotChart.withSampleData(),
-      body: Stack(
-        children: <Widget>[
-          Container(height:400 ,child: ChartCombined()),
-//          Container(height:300 ,child: ChartCombined1()),
-        ],
-      )
-//        body: ListView(
-//          children: <Widget>[
-//            Container(
-//                child: Stack(
-//                  children: <Widget>[
-//                      ChartCombined()
-////                    Positioned(child: ChartCombined1()),
-////                    Positioned(top: 10.0, child: ChartCombined()),
-//                  ],
-//                )
-//            )
-//          ],
-//        ),
+        body: ListView(
+          children: [
+            BuildWonderWeek()
+          ],
+        ),
     );
   }
 }

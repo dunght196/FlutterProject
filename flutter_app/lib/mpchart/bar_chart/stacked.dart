@@ -49,82 +49,81 @@ class BarChartStackedState extends BarActionState<BarChartStacked>
 
   @override
   Widget getBody() {
-    return Stack(
+    return ListView(
       children: <Widget>[
-        Positioned(
-          right: 0,
-          left: 0,
-          top: 0,
-          bottom: 100,
-          child: BarChart(controller),
-        ),
-        Positioned(
-          left: 0,
-          right: 0,
-          bottom: 0,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Expanded(
-                    child: Center(
-                        child: Slider(
-                            value: _count.toDouble(),
-                            min: 0,
-                            max: 1500,
-                            onChanged: (value) {
-                              _count = value.toInt();
-                              _initBarData(_count, _range);
-                            })),
-                  ),
-                  Container(
-                      padding: EdgeInsets.only(right: 15.0),
-                      child: Text(
-                        "$_count",
-                        textDirection: TextDirection.ltr,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: ColorUtils.BLACK,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold),
-                      )),
-                ],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Expanded(
-                    child: Center(
-                        child: Slider(
-                            value: _range,
-                            min: 0,
-                            max: 200,
-                            onChanged: (value) {
-                              _range = value;
-                              _initBarData(_count, _range);
-                            })),
-                  ),
-                  Container(
-                      padding: EdgeInsets.only(right: 15.0),
-                      child: Text(
-                        "${_range.toInt()}",
-                        textDirection: TextDirection.ltr,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: ColorUtils.BLACK,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold),
-                      )),
-                ],
-              )
-            ],
-          ),
+        Container(
+          height: 500,
+          child: RotatedBox(
+              quarterTurns: 45,
+              child: BarChart(controller)),
         )
+//        Positioned(
+//          left: 0,
+//          right: 0,
+//          bottom: 0,
+//          child: Column(
+//            mainAxisSize: MainAxisSize.max,
+//            crossAxisAlignment: CrossAxisAlignment.start,
+//            children: <Widget>[
+//              Row(
+//                mainAxisSize: MainAxisSize.max,
+//                crossAxisAlignment: CrossAxisAlignment.start,
+//                children: <Widget>[
+//                  Expanded(
+//                    child: Center(
+//                        child: Slider(
+//                            value: _count.toDouble(),
+//                            min: 0,
+//                            max: 1500,
+//                            onChanged: (value) {
+//                              _count = value.toInt();
+//                              _initBarData(_count, _range);
+//                            })),
+//                  ),
+//                  Container(
+//                      padding: EdgeInsets.only(right: 15.0),
+//                      child: Text(
+//                        "$_count",
+//                        textDirection: TextDirection.ltr,
+//                        textAlign: TextAlign.center,
+//                        style: TextStyle(
+//                            color: ColorUtils.BLACK,
+//                            fontSize: 12,
+//                            fontWeight: FontWeight.bold),
+//                      )),
+//                ],
+//              ),
+//              Row(
+//                mainAxisSize: MainAxisSize.max,
+//                crossAxisAlignment: CrossAxisAlignment.start,
+//                children: <Widget>[
+//                  Expanded(
+//                    child: Center(
+//                        child: Slider(
+//                            value: _range,
+//                            min: 0,
+//                            max: 200,
+//                            onChanged: (value) {
+//                              _range = value;
+//                              _initBarData(_count, _range);
+//                            })),
+//                  ),
+//                  Container(
+//                      padding: EdgeInsets.only(right: 15.0),
+//                      child: Text(
+//                        "${_range.toInt()}",
+//                        textDirection: TextDirection.ltr,
+//                        textAlign: TextAlign.center,
+//                        style: TextStyle(
+//                            color: ColorUtils.BLACK,
+//                            fontSize: 12,
+//                            fontWeight: FontWeight.bold),
+//                      )),
+//                ],
+//              )
+//            ],
+//          ),
+//        )
       ],
     );
   }
@@ -206,7 +205,7 @@ class BarChartStackedState extends BarActionState<BarChartStacked>
 
   void _initController() {
     var desc = Description()..enabled = false;
-    controller = HorizontalBarChartController(
+    controller = BarChartController(
         axisLeftSettingFunction: (axisLeft, controller) {
           axisLeft
 //            ..setValueFormatter(MyValueFormatter("K"))
@@ -231,10 +230,12 @@ class BarChartStackedState extends BarActionState<BarChartStacked>
         },
         xAxisSettingFunction: (xAxis, controller) {
           xAxis.drawGridLines = false;
-          xAxis.position = (XAxisPosition.TOP);
+          xAxis.position = (XAxisPosition.BOTTOM);
+          xAxis.setGranularity(1);
           xAxis.setAxisMaximum(12);
           xAxis.setAxisMinimum(0);
         },
+        keepPositionOnRotation: false,
 //        drawGridBackground: false,
 //        dragXEnabled: true,
 //        dragYEnabled: true,
