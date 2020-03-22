@@ -6,33 +6,25 @@ import 'package:mp_chart/mp/chart/scatter_chart.dart';
 import 'package:mp_chart/mp/controller/bar_chart_controller.dart';
 import 'package:mp_chart/mp/controller/horizontal_bar_chart_controller.dart';
 import 'package:mp_chart/mp/controller/scatter_chart_controller.dart';
-import 'package:mp_chart/mp/core/animator.dart';
 import 'package:mp_chart/mp/core/data/bar_data.dart';
 import 'package:mp_chart/mp/core/data/scatter_data.dart';
 import 'package:mp_chart/mp/core/data_interfaces/i_bar_data_set.dart';
 import 'package:mp_chart/mp/core/data_interfaces/i_scatter_data_set.dart';
-import 'package:mp_chart/mp/core/data_provider/scatter_data_provider.dart';
 import 'package:mp_chart/mp/core/data_set/bar_data_set.dart';
 import 'package:mp_chart/mp/core/data_set/scatter_data_set.dart';
 import 'package:mp_chart/mp/core/description.dart';
 import 'package:mp_chart/mp/core/entry/bar_entry.dart';
 import 'package:mp_chart/mp/core/entry/entry.dart';
-import 'package:mp_chart/mp/core/highlight/highlight.dart';
 import 'package:mp_chart/mp/core/image_loader.dart';
-import 'package:mp_chart/mp/core/marker/i_marker.dart';
-import 'package:mp_chart/mp/core/poolable/point.dart';
-import 'package:mp_chart/mp/core/render/i_shape_renderer.dart';
-import 'package:mp_chart/mp/core/render/scatter_chart_renderer.dart';
-import 'package:mp_chart/mp/core/utils/color_utils.dart';
 import 'dart:ui' as ui;
 import 'package:mp_chart/mp/core/value_formatter/value_formatter.dart';
-import 'package:mp_chart/mp/core/view_port.dart';
 import 'mpchart/util.dart';
 
 final double widthBorderChart = 1;
 final double heightMarkerBaby = 15;
 final double widthMarkerBaby = 12;
 final double widthItemChart = 0.26;
+final double spaceInsertValue = 0.3;
 
 final Color colorBorder = Colors.grey[400];
 final Color colorGrumpy = Colors.grey[350];
@@ -328,21 +320,30 @@ class _BuildWonderWeekState extends State<BuildWonderWeek> {
     imgs[1] = await ImageLoader.loadImage('assets/img/sunny.png');
     imgs[2] = await ImageLoader.loadImage('assets/img/baby.png');
 
+    List<Entry> values = List();
     List<Entry> values1 = List();
     List<Entry> values2 = List();
+    List<Entry> values3 = List();
+    List<Entry> values4 = List();
+    List<Entry> values5 = List();
+    List<Entry> values6 = List();
+    List<Entry> values7 = List();
+    List<Entry> values8 = List();
+    List<Entry> values9 = List();
+    List<Entry> values10 = List();
+    List<Entry> values11 = List();
 
-    values1.add(Entry(x: 0, y: 11.7, icon: imgs[0], data: '0'));
-    values1.add(Entry(x: 1, y: 11.7, icon: imgs[0], data: '1'));
+    values.addAll(valueWeek7);
 
-    values2.add(Entry(x: 0, y: 12.3, icon: imgs[1]));
+    values1.add(Entry(x: 0, y: 12.3, icon: imgs[1]));
 
     // create a dataset and give it a type
-    ScatterDataSet set1 = ScatterDataSet(values1, "Value");
+    ScatterDataSet set1 = ScatterDataSet(values, "Value");
     set1.setValueFormatter(CustomScatterValue());
     set1.setDrawIcons(false);
     set1.setScatterShapeSize(0);
 
-    ScatterDataSet set2 = ScatterDataSet(values2, "Icon");
+    ScatterDataSet set2 = ScatterDataSet(values1, "Icon");
     set2.setDrawIcons(true);
     set2.setDrawValues(false);
     set2.setFormSize(20);
