@@ -1,6 +1,9 @@
 
 import 'package:flutterapp/wonder_week.dart';
 import 'package:mp_chart/mp/core/entry/entry.dart';
+import 'dart:ui' as ui;
+
+import 'package:mp_chart/mp/core/image_loader.dart';
 
 final List<double> week7data = [1, 1, 1, 1, 0.5, 0.5, 0.5, 0.5, 1];
 
@@ -157,7 +160,6 @@ final List<Entry> valueWeek84 = <Entry>[
   Entry(x: 6, y: 1-spaceInsertValue, data: '83'),
   Entry(x: 7, y: 1-spaceInsertValue, data: '84 tuần')
 ];
-
 
 
 

@@ -16,6 +16,7 @@ import 'package:mp_chart/mp/core/description.dart';
 import 'package:mp_chart/mp/core/entry/bar_entry.dart';
 import 'package:mp_chart/mp/core/entry/entry.dart';
 import 'package:mp_chart/mp/core/image_loader.dart';
+import 'package:mp_chart/mp/core/utils/color_utils.dart';
 import 'dart:ui' as ui;
 import 'package:mp_chart/mp/core/value_formatter/value_formatter.dart';
 import 'mpchart/util.dart';
@@ -55,6 +56,7 @@ class _BuildWonderWeekState extends State<BuildWonderWeek> {
   Widget build(BuildContext context) {
     return Container(
       height: 1100,
+      margin: EdgeInsets.only(top: 10),
       child: Stack(
         children: [
           BarChart(controllerBarChart),
@@ -99,7 +101,8 @@ class _BuildWonderWeekState extends State<BuildWonderWeek> {
             ..enabled = false
             ..drawGridLines = (false)
             ..setAxisMinimum(0.6)
-            ..setAxisMaximum(12.4);
+            ..setAxisMaximum(12.4)
+            ..typeface = Util.LIGHT;
         },
         axisRightSettingFunction: (axisRight, controller) {
           axisRight.enabled = (false);
@@ -119,7 +122,6 @@ class _BuildWonderWeekState extends State<BuildWonderWeek> {
         drawGridBackground: false,
         description: desc);
   }
-
 
   void _initBarData() {
     List<BarEntry> values = List();
@@ -318,7 +320,7 @@ class _BuildWonderWeekState extends State<BuildWonderWeek> {
     List<ui.Image> imgs = List(3);
     imgs[0] = await ImageLoader.loadImage('assets/img/cloud.png');
     imgs[1] = await ImageLoader.loadImage('assets/img/sunny.png');
-    imgs[2] = await ImageLoader.loadImage('assets/img/baby.png');
+    imgs[2] = await ImageLoader.loadImage('assets/img/baby.png');;
 
     List<Entry> values = List();
     List<Entry> values1 = List();
@@ -333,25 +335,226 @@ class _BuildWonderWeekState extends State<BuildWonderWeek> {
     List<Entry> values10 = List();
     List<Entry> values11 = List();
 
-    values.addAll(valueWeek7);
+    List<Entry> marker = List();
+    List<Entry> marker1 = List();
+    List<Entry> marker2 = List();
+    List<Entry> marker3 = List();
+    List<Entry> marker4 = List();
+    List<Entry> marker5 = List();
+    List<Entry> marker6 = List();
+    List<Entry> marker7 = List();
+    List<Entry> marker8 = List();
+    List<Entry> marker9 = List();
+    List<Entry> marker10 = List();
+    List<Entry> marker11 = List();
 
-    values1.add(Entry(x: 0, y: 12.3, icon: imgs[1]));
+    marker.add(Entry(x: 5, y: 12+spaceInsertValue, icon: imgs[0]));
+    marker.add(Entry(x: 6, y: 12+spaceInsertValue, icon: imgs[1]));
+
+    marker1.add(Entry(x: 1, y: 11+spaceInsertValue, icon: imgs[0]));
+    marker1.add(Entry(x: 3, y: 11+spaceInsertValue, icon: imgs[1]));
+    marker1.add(Entry(x: 5, y: 11+spaceInsertValue, icon: imgs[0]));
+    marker1.add(Entry(x: 6, y: 11+spaceInsertValue, icon: imgs[1]));
+
+    marker2.add(Entry(x: 3, y: 10+spaceInsertValue, icon: imgs[0]));
+    marker2.add(Entry(x: 7, y: 10+spaceInsertValue, icon: imgs[1]));
+
+    marker3.add(Entry(x: 0, y: 9+spaceInsertValue, icon: imgs[1]));
+    marker3.add(Entry(x: 5, y: 9+spaceInsertValue, icon: imgs[0]));
+
+    marker4.add(Entry(x: 3, y: 8+spaceInsertValue, icon: imgs[1]));
+
+    marker5.add(Entry(x: 1, y: 7+spaceInsertValue, icon: imgs[0]));
+    marker5.add(Entry(x: 4, y: 7+spaceInsertValue, icon: imgs[1]));
+
+    marker6.add(Entry(x: 2, y: 6+spaceInsertValue, icon: imgs[0]));
+    marker6.add(Entry(x: 7, y: 6+spaceInsertValue, icon: imgs[1]));
+
+    marker7.add(Entry(x: 0, y: 5+spaceInsertValue, icon: imgs[1]));
+    marker7.add(Entry(x: 4, y: 5+spaceInsertValue, icon: imgs[0]));
+
+    marker8.add(Entry(x: 2, y: 4+spaceInsertValue, icon: imgs[1]));
+    marker8.add(Entry(x: 5.5, y: 4+spaceInsertValue, icon: imgs[0]));
+
+    marker9.add(Entry(x: 3, y: 3+spaceInsertValue, icon: imgs[0]));
+
+    marker10.add(Entry(x: 2.5, y: 2+spaceInsertValue, icon: imgs[0]));
+
+    marker11.add(Entry(x: 2, y: 1+spaceInsertValue, icon: imgs[1]));
+
+    values.addAll(valueWeek7);
+    values1.addAll(valueWeek14);
+    values2.addAll(valueWeek21);
+    values3.addAll(valueWeek28);
+    values4.addAll(valueWeek35);
+    values5.addAll(valueWeek42);
+    values6.addAll(valueWeek49);
+    values7.addAll(valueWeek56);
+    values8.addAll(valueWeek63);
+    values9.addAll(valueWeek70);
+    values10.addAll(valueWeek77);
+    values11.addAll(valueWeek84);
 
     // create a dataset and give it a type
-    ScatterDataSet set1 = ScatterDataSet(values, "Value");
+    ScatterDataSet set = ScatterDataSet(values, "Value Week 7");
+    set.setValueFormatter(CustomScatterValue());
+    set.setDrawValues(true);
+    set.setDrawIcons(false);
+    set.setScatterShapeSize(0);
+
+    ScatterDataSet set1 = ScatterDataSet(values1, "Value Week 14");
     set1.setValueFormatter(CustomScatterValue());
+    set1.setDrawValues(true);
     set1.setDrawIcons(false);
     set1.setScatterShapeSize(0);
 
-    ScatterDataSet set2 = ScatterDataSet(values1, "Icon");
-    set2.setDrawIcons(true);
-    set2.setDrawValues(false);
-    set2.setFormSize(20);
+    ScatterDataSet set2 = ScatterDataSet(values2, "Value Week 21");
+    set2.setValueFormatter(CustomScatterValue());
+    set2.setDrawValues(true);
+    set2.setDrawIcons(false);
     set2.setScatterShapeSize(0);
 
+    ScatterDataSet set3 = ScatterDataSet(values3, "Value Week 28");
+    set3.setValueFormatter(CustomScatterValue());
+    set3.setDrawValues(true);
+    set3.setDrawIcons(false);
+    set3.setScatterShapeSize(0);
+
+    ScatterDataSet set4 = ScatterDataSet(values4, "Value Week 35");
+    set4.setValueFormatter(CustomScatterValue());
+    set4.setDrawValues(true);
+    set4.setDrawIcons(false);
+    set4.setScatterShapeSize(0);
+
+    ScatterDataSet set5 = ScatterDataSet(values5, "Value Week 42");
+    set5.setValueFormatter(CustomScatterValue());
+    set5.setDrawValues(true);
+    set5.setDrawIcons(false);
+    set5.setScatterShapeSize(0);
+
+    ScatterDataSet set6 = ScatterDataSet(values6, "Value Week 49");
+    set6.setValueFormatter(CustomScatterValue());
+    set6.setDrawValues(true);
+    set6.setDrawIcons(false);
+    set6.setScatterShapeSize(0);
+
+    ScatterDataSet set7 = ScatterDataSet(values7, "Value Week 56");
+    set7.setValueFormatter(CustomScatterValue());
+    set7.setDrawValues(true);
+    set7.setDrawIcons(false);
+    set7.setScatterShapeSize(0);
+
+    ScatterDataSet set8 = ScatterDataSet(values8, "Value Week 63");
+    set8.setValueFormatter(CustomScatterValue());
+    set8.setDrawValues(true);
+    set8.setDrawIcons(false);
+    set8.setScatterShapeSize(0);
+
+    ScatterDataSet set9 = ScatterDataSet(values9, "Value Week 70");
+    set9.setValueFormatter(CustomScatterValue());
+    set9.setDrawValues(true);
+    set9.setDrawIcons(false);
+    set9.setScatterShapeSize(0);
+
+    ScatterDataSet set10 = ScatterDataSet(values10, "Value Week 77");
+    set10.setValueFormatter(CustomScatterValue());
+    set10.setDrawValues(true);
+    set10.setDrawIcons(false);
+    set10.setScatterShapeSize(0);
+
+    ScatterDataSet set11 = ScatterDataSet(values11, "Value Week 84");
+    set11.setValueFormatter(CustomScatterValue());
+    set11.setDrawValues(true);
+    set11.setDrawIcons(false);
+    set11.setScatterShapeSize(0);
+
+    ScatterDataSet set12 = ScatterDataSet(marker, "Marker Image");
+    set12.setDrawIcons(true);
+    set12.setDrawValues(false);
+    set12.setScatterShapeSize(0);
+
+    ScatterDataSet set13 = ScatterDataSet(marker1, "Marker Image1");
+    set13.setDrawIcons(true);
+    set13.setDrawValues(false);
+    set13.setScatterShapeSize(0);
+
+    ScatterDataSet set14 = ScatterDataSet(marker2, "Marker Image2");
+    set14.setDrawIcons(true);
+    set14.setDrawValues(false);
+    set14.setScatterShapeSize(0);
+
+    ScatterDataSet set15 = ScatterDataSet(marker3, "Marker Image3");
+    set15.setDrawIcons(true);
+    set15.setDrawValues(false);
+    set15.setScatterShapeSize(0);
+
+    ScatterDataSet set16 = ScatterDataSet(marker4, "Marker Image4");
+    set16.setDrawIcons(true);
+    set16.setDrawValues(false);
+    set16.setScatterShapeSize(0);
+
+    ScatterDataSet set17 = ScatterDataSet(marker5, "Marker Image5");
+    set17.setDrawIcons(true);
+    set17.setDrawValues(false);
+    set17.setScatterShapeSize(0);
+
+    ScatterDataSet set18 = ScatterDataSet(marker6, "Marker Image6");
+    set18.setDrawIcons(true);
+    set18.setDrawValues(false);
+    set18.setScatterShapeSize(0);
+
+    ScatterDataSet set19 = ScatterDataSet(marker7, "Marker Image7");
+    set19.setDrawIcons(true);
+    set19.setDrawValues(false);
+    set19.setScatterShapeSize(0);
+
+    ScatterDataSet set20 = ScatterDataSet(marker8, "Marker Image8");
+    set20.setDrawIcons(true);
+    set20.setDrawValues(false);
+    set20.setScatterShapeSize(0);
+
+    ScatterDataSet set21 = ScatterDataSet(marker9, "Marker Image9");
+    set21.setDrawIcons(true);
+    set21.setDrawValues(false);
+    set21.setScatterShapeSize(0);
+
+    ScatterDataSet set22 = ScatterDataSet(marker10, "Marker Image10");
+    set22.setDrawIcons(true);
+    set22.setDrawValues(false);
+    set22.setScatterShapeSize(0);
+
+    ScatterDataSet set23 = ScatterDataSet(marker11, "Marker Image11");
+    set23.setDrawIcons(true);
+    set23.setDrawValues(false);
+    set23.setScatterShapeSize(0);
+
     List<IScatterDataSet> dataSets = List();
+    List<IScatterDataSet> dataSets1 = List();
+//    dataSets.add(set); // add the data sets
     dataSets.add(set1); // add the data sets
     dataSets.add(set2); // add the data sets
+    dataSets.add(set3); // add the data sets
+    dataSets.add(set4); // add the data sets
+    dataSets.add(set5); // add the data sets
+    dataSets.add(set6); // add the data sets
+    dataSets.add(set7); // add the data sets
+    dataSets.add(set8); // add the data sets
+    dataSets.add(set9); // add the data sets
+    dataSets.add(set10); // add the data sets
+    dataSets.add(set11); // add the data sets
+
+//    dataSets.add(set12); // add the data sets
+    dataSets1.add(set13); // add the data sets
+    dataSets1.add(set14); // add the data sets
+    dataSets1.add(set15); // add the data sets
+    dataSets1.add(set16); // add the data sets
+    dataSets1.add(set17); // add the data sets
+    dataSets1.add(set18); // add the data sets
+    dataSets1.add(set19); // add the data sets
+    dataSets1.add(set20); // add the data sets
+    dataSets1.add(set21); // add the data sets
+    dataSets1.add(set22); // add the data sets
+    dataSets1.add(set23); // add the data sets
 
     // create a data object with the data sets
     controllerScatterChart.data = ScatterData.fromList(dataSets);

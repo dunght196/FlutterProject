@@ -174,13 +174,17 @@ class OtherChartScatterPlotState
 
   void _initScatterData(int count, double range) async {
     List<ui.Image> imgs = List(3);
-    imgs[0] = await ImageLoader.loadImage('assets/img/star.png');
-    imgs[1] = await ImageLoader.loadImage('assets/img/add.png');
-    imgs[2] = await ImageLoader.loadImage('assets/img/close.png');
+//    imgs[0] = await ImageLoader.loadImage('assets/img/star.png');
+//    imgs[1] = await ImageLoader.loadImage('assets/img/add.png');
+//    imgs[2] = await ImageLoader.loadImage('assets/img/star.png');
+
+    imgs[0] = await ImageLoader.loadImage('assets/img/cloud.png');
+    imgs[1] = await ImageLoader.loadImage('assets/img/sunny.png');
 
     List<Entry> values1 = List();
     List<Entry> values2 = List();
     List<Entry> values3 = List();
+    List<Entry> values4 = List();
 
 //    for (int i = 0; i < count; i++) {
 //      double val = (random.nextDouble() * range) + 3;
@@ -188,41 +192,63 @@ class OtherChartScatterPlotState
 //    }
 
     values1.add(Entry(x: 1, y: 12, icon: imgs[0], data: '1'));
-    values1.add(Entry(x: 2, y: 12, icon: imgs[0], data: '2'));
+    values1.add(Entry(x: 2, y: 12, icon: imgs[1], data: '2'));
 
-    for (int i = 0; i < count; i++) {
-      double val = (random.nextDouble() * range) + 3;
-      values2.add(Entry(x: i + 0.33, y: val, icon: imgs[0]));
-    }
+    values2.add(Entry(x: 2, y: 11, icon: imgs[1], data: '4'));
+    values2.add(Entry(x: 3, y: 10.3, icon: imgs[0], data: '5'));
 
-    for (int i = 0; i < count; i++) {
-      double val = (random.nextDouble() * range) + 3;
-      values3.add(Entry(x: i + 0.66, y: val, icon: imgs[0]));
-    }
+    values3.add(Entry(x: 2, y: 9, icon: imgs[1], data: '6'));
+    values3.add(Entry(x: 6, y: 8, icon: imgs[0], data: '7'));
+
+    values4.add(Entry(x: 3, y: 9, icon: imgs[1], data: '8'));
+    values4.add(Entry(x: 5, y: 8, icon: imgs[0], data: '9'));
+
+
+//    for (int i = 0; i < count; i++) {
+//      double val = (random.nextDouble() * range) + 3;
+//      values2.add(Entry(x: i + 0.33, y: val, icon: imgs[1]));
+//    }
+//
+//    for (int i = 0; i < count; i++) {
+//      double val = (random.nextDouble() * range) + 3;
+//      values3.add(Entry(x: i + 0.66, y: val, icon: imgs[2]));
+//    }
 
     // create a dataset and give it a type
     ScatterDataSet set1 = ScatterDataSet(values1, "DS 1");
-//    set1.setScatterShape(ScatterShape.SQUARE);
     set1.setColor1(ColorUtils.COLORFUL_COLORS[0]);
     set1.setValueFormatter(CustomScatterShapeRenderer());
-    set1.setDrawIcons(false);
-//    ScatterDataSet set2 = ScatterDataSet(values2, "DS 2");
-//    set2.setScatterShape(ScatterShape.CIRCLE);
-//    set2.setScatterShapeHoleColor(ColorUtils.COLORFUL_COLORS[3]);
-//    set2.setScatterShapeHoleRadius(3);
-//    set2.setColor1(ColorUtils.COLORFUL_COLORS[1]);
-//    ScatterDataSet set3 = ScatterDataSet(values3, "DS 3");
-//    set3.setShapeRenderer(CustomScatterShapeRenderer());
-//    set3.setColor1(ColorUtils.COLORFUL_COLORS[2]);
-
+    set1.setDrawIcons(true);
+    set1.setDrawValues(false);
     set1.setScatterShapeSize(0);
-//    set2.setScatterShapeSize(8);
-//    set3.setScatterShapeSize(8);
+
+    ScatterDataSet set2 = ScatterDataSet(values2, "DS 2");
+    set2.setColor1(ColorUtils.COLORFUL_COLORS[0]);
+    set2.setValueFormatter(CustomScatterShapeRenderer());
+    set2.setDrawIcons(true);
+    set2.setDrawValues(false);
+    set2.setScatterShapeSize(0);
+
+    ScatterDataSet set3= ScatterDataSet(values3, "DS 3");
+    set3.setColor1(ColorUtils.COLORFUL_COLORS[0]);
+    set3.setValueFormatter(CustomScatterShapeRenderer());
+    set3.setDrawIcons(true);
+    set3.setDrawValues(false);
+    set3.setScatterShapeSize(0);
+
+    ScatterDataSet set4= ScatterDataSet(values4, "DS 4");
+    set4.setColor1(ColorUtils.COLORFUL_COLORS[0]);
+    set4.setValueFormatter(CustomScatterShapeRenderer());
+    set4.setDrawIcons(true);
+    set4.setDrawValues(false);
+    set4.setScatterShapeSize(0);
+
 
     List<IScatterDataSet> dataSets = List();
     dataSets.add(set1); // add the data sets
-//    dataSets.add(set2);
-//    dataSets.add(set3);
+    dataSets.add(set2); // add the data sets
+    dataSets.add(set3);
+    dataSets.add(set4);
 
     // create a data object with the data sets
     controller.data = ScatterData.fromList(dataSets);
