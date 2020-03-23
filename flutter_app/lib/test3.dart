@@ -2,11 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/data_chart_wonderweek.dart';
 import 'package:mp_chart/mp/chart/bar_chart.dart';
+import 'package:mp_chart/mp/chart/combined_chart.dart';
 import 'package:mp_chart/mp/chart/scatter_chart.dart';
 import 'package:mp_chart/mp/controller/bar_chart_controller.dart';
+import 'package:mp_chart/mp/controller/combined_chart_controller.dart';
 import 'package:mp_chart/mp/controller/horizontal_bar_chart_controller.dart';
 import 'package:mp_chart/mp/controller/scatter_chart_controller.dart';
 import 'package:mp_chart/mp/core/data/bar_data.dart';
+import 'package:mp_chart/mp/core/data/combined_data.dart';
 import 'package:mp_chart/mp/core/data/scatter_data.dart';
 import 'package:mp_chart/mp/core/data_interfaces/i_bar_data_set.dart';
 import 'package:mp_chart/mp/core/data_interfaces/i_scatter_data_set.dart';
@@ -32,16 +35,16 @@ final Color colorGrumpy = Colors.grey[350];
 final Color colorPettish = Colors.pink[50];
 final Color colorComfort = Colors.transparent;
 
-class BuildWonderWeek extends StatefulWidget {
+class BuildWonderWeek1 extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _BuildWonderWeekState();
+    return _BuildWonderWeekState1();
   }
 }
 
-class _BuildWonderWeekState extends State<BuildWonderWeek> {
+class _BuildWonderWeekState1 extends State<BuildWonderWeek1> {
   BarChartController controllerBarChart;
-  ScatterChartController controllerScatterChart;
+  CombinedChartController controllerScatterChart;
 
   @override
   void initState() {
@@ -49,7 +52,8 @@ class _BuildWonderWeekState extends State<BuildWonderWeek> {
     _initControllerBarChart();
     _initControllerScatterChart();
     _initBarData();
-    _initScatterData();
+//    _initScatterData();
+    _initCombinedData();
   }
 
   @override
@@ -60,7 +64,7 @@ class _BuildWonderWeekState extends State<BuildWonderWeek> {
       child: Stack(
         children: [
           BarChart(controllerBarChart),
-          ScatterChart(controllerScatterChart)
+          CombinedChart(controllerScatterChart)
         ],
       ),
     );
@@ -94,7 +98,7 @@ class _BuildWonderWeekState extends State<BuildWonderWeek> {
 
   void _initControllerScatterChart() {
     var desc = Description()..enabled = false;
-    controllerScatterChart = ScatterChartController(
+    controllerScatterChart = CombinedChartController(
         backgroundColor: Colors.transparent,
         axisLeftSettingFunction: (axisLeft, controller) {
           axisLeft
@@ -320,7 +324,7 @@ class _BuildWonderWeekState extends State<BuildWonderWeek> {
     List<ui.Image> imgs = List(3);
     imgs[0] = await ImageLoader.loadImage('assets/img/cloud.png');
     imgs[1] = await ImageLoader.loadImage('assets/img/sunny.png');
-    imgs[2] = await ImageLoader.loadImage('assets/img/baby.png');;
+    imgs[2] = await ImageLoader.loadImage('assets/img/baby.png');
 
     List<Entry> values = List();
     List<Entry> values1 = List();
@@ -530,7 +534,7 @@ class _BuildWonderWeekState extends State<BuildWonderWeek> {
 
     List<IScatterDataSet> dataSets = List();
     List<IScatterDataSet> dataSets1 = List();
-//    dataSets.add(set); // add the data sets
+    dataSets.add(set); // add the data sets
 //    dataSets.add(set1); // add the data sets
     dataSets.add(set2); // add the data sets
     dataSets.add(set3); // add the data sets
@@ -544,23 +548,35 @@ class _BuildWonderWeekState extends State<BuildWonderWeek> {
     dataSets.add(set11); // add the data sets
 
 //    dataSets.add(set12); // add the data sets
-//    dataSets1.add(set13); // add the data sets
-    dataSets1.add(set14); // add the data sets
-    dataSets1.add(set15); // add the data sets
-    dataSets1.add(set16); // add the data sets
-    dataSets1.add(set17); // add the data sets
-    dataSets1.add(set18); // add the data sets
-    dataSets1.add(set19); // add the data sets
-    dataSets1.add(set20); // add the data sets
-    dataSets1.add(set21); // add the data sets
-    dataSets1.add(set22); // add the data sets
-    dataSets1.add(set23); // add the data sets
+//    dataSets.add(set13); // add the data sets
+    dataSets.add(set14); // add the data sets
+    dataSets.add(set15); // add the data sets
+    dataSets.add(set16); // add the data sets
+    dataSets.add(set17); // add the data sets
+    dataSets.add(set18); // add the data sets
+    dataSets.add(set19); // add the data sets
+    dataSets.add(set20); // add the data sets
+    dataSets.add(set21); // add the data sets
+    dataSets.add(set22); // add the data sets
+    dataSets.add(set23); // add the data sets
 
     // create a data object with the data sets
     controllerScatterChart.data = ScatterData.fromList(dataSets);
     controllerScatterChart.data.setValueTypeface(Util.LIGHT);
 
     setState(() {});
+  }
+
+  void _initCombinedData() async {
+    List<ui.Image> imgs = List(3);
+    imgs[0] = await ImageLoader.loadImage('assets/img/cloud.png');
+    imgs[1] = await ImageLoader.loadImage('assets/img/sunny.png');
+    imgs[2] = await ImageLoader.loadImage('assets/img/baby.png');
+
+    controllerScatterChart.data = CombinedData();
+    controllerScatterChart.data
+      ..setData3(generateScatterData(imgs[0], imgs[1]))
+      ..setValueTypeface(Util.LIGHT);
   }
 
   List<Color> _getColorsWeek7() {
@@ -715,6 +731,116 @@ class _BuildWonderWeekState extends State<BuildWonderWeek> {
       ..add(colorComfort)
       ..add(colorComfort)
       ..add(colorComfort);
+  }
+
+  ScatterData generateScatterData(ui.Image img1, ui.Image img2) {
+    List<Entry> values = List();
+    List<Entry> values1 = List();
+    List<Entry> values2 = List();
+    List<Entry> values3 = List();
+    List<Entry> values4 = List();
+    List<Entry> values5 = List();
+    List<Entry> values6 = List();
+    List<Entry> values7 = List();
+    List<Entry> values8 = List();
+    List<Entry> values9 = List();
+    List<Entry> values10 = List();
+    List<Entry> values11 = List();
+
+    List<Entry> marker = List();
+    List<Entry> marker1 = List();
+    List<Entry> marker2 = List();
+    List<Entry> marker3 = List();
+    List<Entry> marker4 = List();
+    List<Entry> marker5 = List();
+    List<Entry> marker6 = List();
+    List<Entry> marker7 = List();
+    List<Entry> marker8 = List();
+    List<Entry> marker9 = List();
+    List<Entry> marker10 = List();
+    List<Entry> marker11 = List();
+
+    marker.add(Entry(x: 5, y: 12+spaceInsertValue, icon: img1));
+    marker.add(Entry(x: 6, y: 12+spaceInsertValue, icon: img2));
+
+    marker1.add(Entry(x: 1, y: 11+spaceInsertValue, icon: img2));
+    marker1.add(Entry(x: 3, y: 11+spaceInsertValue, icon: img1));
+    marker1.add(Entry(x: 5, y: 11+spaceInsertValue, icon: img2));
+    marker1.add(Entry(x: 6, y: 11+spaceInsertValue, icon: img1));
+
+    marker10.add(Entry(x: 2.5, y: 2+spaceInsertValue, icon: img1));
+
+    marker11.add(Entry(x: 2, y: 1+spaceInsertValue, icon: img2));
+
+    values.addAll(valueWeek7);
+    values1.addAll(valueWeek14);
+    values2.addAll(valueWeek21);
+    values3.addAll(valueWeek28);
+    values4.addAll(valueWeek35);
+    values5.addAll(valueWeek42);
+    values6.addAll(valueWeek49);
+    values7.addAll(valueWeek56);
+    values8.addAll(valueWeek63);
+    values9.addAll(valueWeek70);
+    values10.addAll(valueWeek77);
+    values11.addAll(valueWeek84);
+
+    // create a dataset and give it a type
+    ScatterDataSet set = ScatterDataSet(values, "Value Week 7");
+    set.setValueFormatter(CustomScatterValue());
+    set.setDrawValues(true);
+    set.setDrawIcons(false);
+    set.setScatterShapeSize(0);
+
+    ScatterDataSet set1 = ScatterDataSet(values1, "Value Week 14");
+    set1.setValueFormatter(CustomScatterValue());
+    set1.setDrawValues(true);
+    set1.setDrawIcons(false);
+    set1.setScatterShapeSize(0);
+
+    ScatterDataSet set10 = ScatterDataSet(values10, "Value Week 77");
+    set10.setValueFormatter(CustomScatterValue());
+    set10.setDrawValues(true);
+    set10.setDrawIcons(false);
+    set10.setScatterShapeSize(0);
+
+    ScatterDataSet set11 = ScatterDataSet(values11, "Value Week 84");
+    set11.setValueFormatter(CustomScatterValue());
+    set11.setDrawValues(true);
+    set11.setDrawIcons(false);
+    set11.setScatterShapeSize(0);
+
+    ScatterDataSet set12 = ScatterDataSet(marker, "Marker Image");
+    set12.setDrawIcons(true);
+    set12.setDrawValues(false);
+    set12.setScatterShapeSize(0);
+
+    ScatterDataSet set13 = ScatterDataSet(marker1, "Marker Image1");
+    set13.setDrawIcons(true);
+    set13.setDrawValues(false);
+    set13.setScatterShapeSize(0);
+
+    ScatterDataSet set22 = ScatterDataSet(marker10, "Marker Image10");
+    set22.setDrawIcons(true);
+    set22.setDrawValues(false);
+    set22.setScatterShapeSize(0);
+
+    ScatterDataSet set23 = ScatterDataSet(marker11, "Marker Image11");
+    set23.setDrawIcons(true);
+    set23.setDrawValues(false);
+    set23.setScatterShapeSize(0);
+
+    ScatterData d = ScatterData();
+    d.addDataSet(set);
+    d.addDataSet(set1);
+    d.addDataSet(set10);
+    d.addDataSet(set11);
+    d.addDataSet(set12);
+    d.addDataSet(set13);
+    d.addDataSet(set22);
+    d.addDataSet(set23);
+
+    return d;
   }
 
 }

@@ -191,17 +191,15 @@ class OtherChartScatterPlotState
 //      values1.add(Entry(x: i.toDouble(), y: val, icon: imgs[0]));
 //    }
 
-    values1.add(Entry(x: 1, y: 12, icon: imgs[0], data: '1'));
-    values1.add(Entry(x: 2, y: 12, icon: imgs[1], data: '2'));
+    values1.add(Entry(x: 1, y: 12, icon: imgs[0]));
+    values1.add(Entry(x: 2, y: 12, icon: imgs[1]));
 
-    values2.add(Entry(x: 2, y: 11, icon: imgs[1], data: '4'));
-    values2.add(Entry(x: 3, y: 10.3, icon: imgs[0], data: '5'));
-
-    values3.add(Entry(x: 2, y: 9, icon: imgs[1], data: '6'));
-    values3.add(Entry(x: 6, y: 8, icon: imgs[0], data: '7'));
-
-    values4.add(Entry(x: 3, y: 9, icon: imgs[1], data: '8'));
-    values4.add(Entry(x: 5, y: 8, icon: imgs[0], data: '9'));
+    values1.add(Entry(x: 2, y: 11, icon: imgs[1], ));
+    values1.add(Entry(x: 3, y: 10.3, icon: imgs[0]));
+    values1.add(Entry(x: 2, y: 9, icon: imgs[1]));
+    values1.add(Entry(x: 6, y: 8, icon: imgs[0]));
+    values1.add(Entry(x: 3, y: 9, icon: imgs[1]));
+    values1.add(Entry(x: 5, y: 8, icon: imgs[0]));
 
 
 //    for (int i = 0; i < count; i++) {
@@ -246,9 +244,9 @@ class OtherChartScatterPlotState
 
     List<IScatterDataSet> dataSets = List();
     dataSets.add(set1); // add the data sets
-    dataSets.add(set2); // add the data sets
-    dataSets.add(set3);
-    dataSets.add(set4);
+//    dataSets.add(set2); // add the data sets
+//    dataSets.add(set3);
+//    dataSets.add(set4);
 
     // create a data object with the data sets
     controller.data = ScatterData.fromList(dataSets);

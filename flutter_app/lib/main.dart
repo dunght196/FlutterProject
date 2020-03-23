@@ -9,6 +9,7 @@ import 'mpchart/bar_chart/stacked.dart';
 import 'mpchart/line_chart/basic.dart';
 import 'mpchart/other_chart/combined.dart';
 import 'mpchart/other_chart/scatter_plot.dart';
+import 'test3.dart';
 
 void main() => runApp(MyApp());
 
@@ -68,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: ListView(
           children: [
-            BuildWonderWeek()
+            BuildWonderWeek1()
           ],
         ),
 //          body: OtherChartScatterPlot(),
