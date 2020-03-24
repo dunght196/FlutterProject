@@ -69,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: ListView(
           children: [
-            BuildWonderWeek1()
+            BuildWonderWeek2()
           ],
         ),
 //          body: OtherChartScatterPlot(),

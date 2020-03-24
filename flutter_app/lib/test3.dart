@@ -798,6 +798,54 @@ class _BuildWonderWeekState1 extends State<BuildWonderWeek1> {
     set1.setDrawIcons(false);
     set1.setScatterShapeSize(0);
 
+    ScatterDataSet set2 = ScatterDataSet(values2, "Value Week 21");
+    set2.setValueFormatter(CustomScatterValue());
+    set2.setDrawValues(true);
+    set2.setDrawIcons(false);
+    set2.setScatterShapeSize(0);
+
+    ScatterDataSet set3 = ScatterDataSet(values3, "Value Week 28");
+    set3.setValueFormatter(CustomScatterValue());
+    set3.setDrawValues(true);
+    set3.setDrawIcons(false);
+    set3.setScatterShapeSize(0);
+
+    ScatterDataSet set4 = ScatterDataSet(values4, "Value Week 35");
+    set4.setValueFormatter(CustomScatterValue());
+    set4.setDrawValues(true);
+    set4.setDrawIcons(false);
+    set4.setScatterShapeSize(0);
+
+    ScatterDataSet set5 = ScatterDataSet(values5, "Value Week 42");
+    set5.setValueFormatter(CustomScatterValue());
+    set5.setDrawValues(true);
+    set5.setDrawIcons(false);
+    set5.setScatterShapeSize(0);
+
+    ScatterDataSet set6 = ScatterDataSet(values6, "Value Week 49");
+    set6.setValueFormatter(CustomScatterValue());
+    set6.setDrawValues(true);
+    set6.setDrawIcons(false);
+    set6.setScatterShapeSize(0);
+
+    ScatterDataSet set7 = ScatterDataSet(values7, "Value Week 56");
+    set7.setValueFormatter(CustomScatterValue());
+    set7.setDrawValues(true);
+    set7.setDrawIcons(false);
+    set7.setScatterShapeSize(0);
+
+    ScatterDataSet set8 = ScatterDataSet(values8, "Value Week 63");
+    set8.setValueFormatter(CustomScatterValue());
+    set8.setDrawValues(true);
+    set8.setDrawIcons(false);
+    set8.setScatterShapeSize(0);
+
+    ScatterDataSet set9 = ScatterDataSet(values9, "Value Week 70");
+    set9.setValueFormatter(CustomScatterValue());
+    set9.setDrawValues(true);
+    set9.setDrawIcons(false);
+    set9.setScatterShapeSize(0);
+
     ScatterDataSet set10 = ScatterDataSet(values10, "Value Week 77");
     set10.setValueFormatter(CustomScatterValue());
     set10.setDrawValues(true);
@@ -833,11 +881,19 @@ class _BuildWonderWeekState1 extends State<BuildWonderWeek1> {
     ScatterData d = ScatterData();
     d.addDataSet(set);
     d.addDataSet(set1);
+    d.addDataSet(set2);
+    d.addDataSet(set3);
+    d.addDataSet(set4);
+    d.addDataSet(set5);
+    d.addDataSet(set6);
+    d.addDataSet(set7);
+    d.addDataSet(set8);
+    d.addDataSet(set9);
     d.addDataSet(set10);
     d.addDataSet(set11);
     d.addDataSet(set12);
-    d.addDataSet(set13);
-    d.addDataSet(set22);
+//    d.addDataSet(set13);
+//    d.addDataSet(set22);
     d.addDataSet(set23);
 
     return d;

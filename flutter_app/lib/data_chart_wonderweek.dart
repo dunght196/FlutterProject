@@ -1,9 +1,138 @@
-
+import 'dart:ui';
 import 'package:flutterapp/wonder_week.dart';
 import 'package:mp_chart/mp/core/entry/entry.dart';
-import 'dart:ui' as ui;
 
-import 'package:mp_chart/mp/core/image_loader.dart';
+abstract class DataWonderWeek {
+  static final List<Color> COLORFUL_WEEK7 = List()
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorComfort)
+      ..add(colorComfort);
+
+  static final List<Color> COLORFUL_WEEK14 = List()
+      ..add(colorComfort)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorComfort)
+      ..add(colorComfort);
+
+  static final List<Color> COLORFUL_WEEK21 = List()
+      ..add(colorComfort)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorComfort)
+      ..add(colorComfort);
+
+  static final List<Color> COLORFUL_WEEK28 = List()
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorComfort)
+      ..add(colorComfort);
+
+  static final List<Color> COLORFUL_WEEK35  = List()
+      ..add(colorComfort)
+      ..add(colorPettish)
+      ..add(colorPettish)
+      ..add(colorPettish)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy);
+
+  static final List<Color> COLORFUL_WEEK42 = List()
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorGrumpy);
+
+  static final List<Color> COLORFUL_WEEK49 = List()
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorComfort);
+
+  static final List<Color> COLORFUL_WEEK56 = List()
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorComfort)
+      ..add(colorComfort);
+
+  static final List<Color> COLORFUL_WEEK63 = List()
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy);
+
+  static final List<Color> COLORFUL_WEEK70 = List()
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorComfort);
+
+  static final List<Color> COLORFUL_WEEK77 = List()
+      ..add(colorComfort)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorGrumpy)
+      ..add(colorComfort)
+      ..add(colorComfort);
+
+  static List<Color> COLORFUL_WEEK84 = List()
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorComfort)
+      ..add(colorComfort);
+}
 
 final List<double> week7data = [1, 1, 1, 1, 0.5, 0.5, 0.5, 0.5, 1];
 
@@ -160,87 +289,3 @@ final List<Entry> valueWeek84 = <Entry>[
   Entry(x: 6, y: 1-spaceInsertValue, data: '83'),
   Entry(x: 7, y: 1-spaceInsertValue, data: '84 tuần')
 ];
-
-
-
-//final List<WonderWeekData> markerWeek7DataRain = <WonderWeekData>[
-//  WonderWeekData(x: 5, y: heightWonderWeekChart),
-//];
-//
-//final List<WonderWeekData> markerWeek14DataRain = <WonderWeekData>[
-//  WonderWeekData(x: 8, y: heightWonderWeekChart),
-//  WonderWeekData(x: 12, y: heightWonderWeekChart),
-//];
-//
-//final List<WonderWeekData> markerWeek21DataRain = <WonderWeekData>[
-//  WonderWeekData(x: 17, y: heightWonderWeekChart),
-//];
-//
-//final List<WonderWeekData> markerWeek28DataRain = <WonderWeekData>[
-//  WonderWeekData(x: 21, y: heightWonderWeekChart),
-//];
-//
-//final List<WonderWeekData> markerWeek42DataRain = <WonderWeekData>[
-//  WonderWeekData(x: 36, y: heightWonderWeekChart),
-//];
-//
-//final List<WonderWeekData> markerWeek49DataRain = <WonderWeekData>[
-//  WonderWeekData(x: 44, y: heightWonderWeekChart),
-//];
-//
-//final List<WonderWeekData> markerWeek56DataRain = <WonderWeekData>[
-//  WonderWeekData(x: 53, y: heightWonderWeekChart),
-//];
-//
-//final List<WonderWeekData> markerWeek63DataRain = <WonderWeekData>[
-//  WonderWeekData(x: 61.5, y: heightWonderWeekChart),
-//];
-//
-//final List<WonderWeekData> markerWeek77DataRain = <WonderWeekData>[
-//  WonderWeekData(x: 72.5, y: heightWonderWeekChart),
-//];
-//
-//final List<WonderWeekData> markerWeek7DataDocile = <WonderWeekData>[
-//  WonderWeekData(x: 6, y: heightWonderWeekChart),
-//];
-//
-//final List<WonderWeekData> markerWeek14DataDocile = <WonderWeekData>[
-//  WonderWeekData(x: 10, y: heightWonderWeekChart),
-//  WonderWeekData(x: 13, y: heightWonderWeekChart),
-//];
-//
-//final List<WonderWeekData> markerWeek21DataDocile = <WonderWeekData>[
-//  WonderWeekData(x: 21, y: heightWonderWeekChart),
-//];
-//
-//final List<WonderWeekData> markerWeek28DataDocile = <WonderWeekData>[
-//  WonderWeekData(x: 26, y: heightWonderWeekChart),
-//];
-//
-//final List<WonderWeekData> markerWeek35DataDocile = <WonderWeekData>[
-//  WonderWeekData(x: 31, y: heightWonderWeekChart),
-//];
-//
-//final List<WonderWeekData> markerWeek42DataDocile = <WonderWeekData>[
-//  WonderWeekData(x: 39, y: heightWonderWeekChart),
-//];
-//
-//final List<WonderWeekData> markerWeek49DataDocile = <WonderWeekData>[
-//  WonderWeekData(x: 49, y: heightWonderWeekChart),
-//];
-//
-//final List<WonderWeekData> markerWeek56DataDocile = <WonderWeekData>[
-//  WonderWeekData(x: 49, y: heightWonderWeekChart),
-//];
-//
-//final List<WonderWeekData> markerWeek63DataDocile = <WonderWeekData>[
-//  WonderWeekData(x: 58, y: heightWonderWeekChart),
-//];
-//
-//final List<WonderWeekData> markerWeek70DataDocile = <WonderWeekData>[
-//  WonderWeekData(x: 66, y: heightWonderWeekChart),
-//];
-//
-//final List<WonderWeekData> markerWeek84DataDocile = <WonderWeekData>[
-//  WonderWeekData(x: 79, y: heightWonderWeekChart),
-//];
